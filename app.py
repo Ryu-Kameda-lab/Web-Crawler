@@ -85,7 +85,7 @@ st.markdown(
 # ──────────────────────────────────────────────────────────────
 with st.sidebar:
     st.title("📰 Crypto Reporter")
-    st.caption("Gemini 2.5 Pro × Google Search")
+    st.caption("Gemini × Google Search + SNS")
 
     st.divider()
 
@@ -265,4 +265,4 @@ with col_f1:
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     st.caption(f"🕐 現在時刻: {now_str}　|　画面は60秒ごとに自動更新")
 with col_f2:
-    st.caption("Powered by Gemini 2.5 Pro + Google Search Grounding")
+    st.caption("Powered by Gemini + Google Search Grounding | SNS: X(Twitter) / Reddit")

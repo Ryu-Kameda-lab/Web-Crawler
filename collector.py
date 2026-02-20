@@ -51,6 +51,11 @@ def collect_crypto_news(existing_report: str = "", update_count: int = 0) -> dic
 3. **マクロ経済との連動** - 米株・ドル指数・金利・CPI などとの相関
 4. **DeFi・NFT・Web3** - プロトコルの最新アップデート、注目プロジェクト
 5. **機関投資家・企業の動き** - ETF 資金フロー、大企業の仮想通貨関連ニュース
+6. **SNS・コミュニティの動向** - 以下を必ず調査すること
+   - X(Twitter) で今日トレンドになっている仮想通貨関連の話題・ハッシュタグ
+   - 影響力のある仮想通貨インフルエンサー（例: @CryptoInfluencer 系アカウント）の注目発言
+   - Reddit の r/CryptoCurrency・r/Bitcoin・r/ethereum などのホットな投稿・議論
+   - 仮想通貨コミュニティ全体の今日のセンチメント（強気/弱気/中立）
 
 ## 出力形式（Markdown）
 
@@ -80,6 +85,16 @@ def collect_crypto_news(existing_report: str = "", update_count: int = 0) -> dic
 ## 5. 機関投資家・企業の動き
 （詳細分析）
 
+## 6. 📣 SNS・コミュニティの動向
+### X(Twitter) トレンド
+（トレンドのハッシュタグ・話題・注目ツイートの要約）
+
+### Reddit 注目投稿
+（r/CryptoCurrency・r/Bitcoin などのホット投稿・議論の要約）
+
+### コミュニティセンチメント
+（全体的な雰囲気: 強気 / 弱気 / 中立、その根拠）
+
 ---
 
 ## 📎 参照ソース
@@ -88,6 +103,7 @@ def collect_crypto_news(existing_report: str = "", update_count: int = 0) -> dic
 
 各セクションは具体的な数字・固有名詞・日時を含めて詳述してください。
 ソースは必ずURLを記載してください。
+SNSセクションは特に具体的な投稿内容・ユーザー名・数値（いいね数・RT数など）を含めてください。
 """
     else:
         # 2回目以降：既存レポートを更新・深化
@@ -107,7 +123,7 @@ def collect_crypto_news(existing_report: str = "", update_count: int = 0) -> dic
 - 既存情報に新たな根拠・詳細が得られたら内容を深める
 - 総合サマリーは常に最新状況を反映して書き直す
 - 「最終更新」の日時を {current_time}（第{update_count + 1}回収集）に更新する
-- セクション構成（1〜5）は維持する
+- セクション構成（1〜6）は維持する
 - 参照ソースに新しいURLを追加する
 
 ## 調査すべき最新情報
@@ -116,6 +132,10 @@ def collect_crypto_news(existing_report: str = "", update_count: int = 0) -> dic
 3. **マクロ経済との連動** - 指標発表・市場の反応
 4. **DeFi・NFT・Web3** - 新しいアップデート・事件・話題
 5. **機関投資家・企業の動き** - 新たな買い付け・発表・提携
+6. **SNS・コミュニティの動向** - 以下を必ず更新すること
+   - X(Twitter) の直近1時間のトレンド・話題・注目発言
+   - Reddit の新たなホット投稿・議論
+   - コミュニティセンチメントの変化（前回からの変化があれば言及）
 
 **更新後のレポート全文をそのまま出力してください（省略しないこと）。**
 """
