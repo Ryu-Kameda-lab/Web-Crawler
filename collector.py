@@ -1,16 +1,19 @@
 """
 collector.py
-Gemini 2.5 Pro を使って仮想通貨ニュースを収集・分析するモジュール
+Gemini を使って仮想通貨ニュースを収集・分析するモジュール
 """
 
 import os
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from datetime import datetime
+
+MODEL_NAME = "gemini-2.0-flash"
 
 
 def collect_crypto_news(existing_report: str = "", update_count: int = 0) -> dict:
     """
-    Gemini 2.5 Pro + Google Search Grounding でニュースを収集し、
+    Gemini + Google Search Grounding でニュースを収集し、
     レポートを生成（または更新）する。
 
     Args:
@@ -28,9 +31,7 @@ def collect_crypto_news(existing_report: str = "", update_count: int = 0) -> dic
     if not api_key:
         raise ValueError("GEMINI_API_KEY が設定されていません。.env ファイルを確認してください。")
 
-    genai.configure(api_key=api_key)
-
-    model = genai.GenerativeModel("gemini-2.5-pro-preview-06-05")
+    client = genai.Client(api_key=api_key)
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M JST")
 
     # ──────────────────────────────────────────
@@ -122,15 +123,23 @@ def collect_crypto_news(existing_report: str = "", update_count: int = 0) -> dic
     # ──────────────────────────────────────────
     # Gemini API 呼び出し（Google Search Grounding）
     # ──────────────────────────────────────────
+    google_search_tool = types.Tool(google_search=types.GoogleSearch())
+
     try:
-        response = model.generate_content(
-            prompt,
-            tools=[{"google_search_retrieval": {}}],
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                tools=[google_search_tool],
+            ),
         )
     except Exception as e:
         # grounding なしでフォールバック
         print(f"[collector] Search grounding エラー、フォールバック: {e}")
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=prompt,
+        )
 
     # ──────────────────────────────────────────
     # ソース抽出
